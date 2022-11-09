@@ -1,0 +1,5 @@
+type=item
+items=minecraft:stick
+texture=sellstick_[[USE]]
+nbt.display.Lore.*=pattern:*[[USE]] \u00a7fremaining uses
+useGlint=false
