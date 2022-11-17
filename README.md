@@ -15,4 +15,5 @@ Are you tired of having to mouse over each SellStick just to see how many uses i
 4. Make sure **Custom Items** are turned **ON** in `Options > Video Settings > Quality`.
 
 # Generating your own pack
-If you want to change the stick image or the colours of the characters, you can clone this repository, install `requirements.txt`, and run `generate.py`. Everything you would want to edit is in the `resource` folder, while the generation options can be changed in the `resource/config.cfg` file.
+If you want to change the stick image or the colours of the numbers, you can do so by changing the textures in the `resource` folder.
+Afterwards, run `generate.py -p [pack format]` to generate a pack.
