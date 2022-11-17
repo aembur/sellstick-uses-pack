@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 from PIL import Image, ImageEnhance
-from configparser import ConfigParser
 from shutil import copyfile, make_archive, rmtree
 import argparse
 import sys
