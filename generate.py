@@ -2,17 +2,9 @@
 from PIL import Image, ImageEnhance
 from configparser import ConfigParser
 from shutil import copyfile, make_archive, rmtree
+import argparse
 import sys
 import os
-
-root_path = os.path.dirname(os.path.realpath(sys.argv[0]))
-folders = "temp/assets/minecraft/mcpatcher/cit/icons/sellsticks/"
-final_path = os.path.join(root_path, folders)
-
-stick_img = Image.open("resource/stick.png")
-chars_img = Image.open("resource/chars.png")
-chars_dim = [chars_img.width // 10, chars_img.height]
-chars_arr = [chars_img.crop((chars_dim[0] * i, 0, chars_dim[0] * i + chars_dim[0], chars_dim[1])) for i in range(10)]
 
 formats = {1: "1.6.1–1.8.9",
            2: "1.9-1.10.2",
@@ -25,21 +17,31 @@ formats = {1: "1.6.1–1.8.9",
            9: "1.19-1.19.2",
            11: "1.19.3"}
 
+parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
+req_args = parser.add_argument_group("required arguments")
+req_args.add_argument("-p", help="pack format (see https://minecraft.fandom.com/wiki/Pack_format for info)",
+                      type=int, choices=formats.keys(), metavar="format", required=True)
+parser.add_argument("-u", type=int, help="specify how many uses to generate (default is 50)",
+                    default=50, required=False, metavar="uses")
+args = parser.parse_args()
+
+root_path = os.path.dirname(os.path.realpath(sys.argv[0]))
+folders = "temp/assets/minecraft/mcpatcher/cit/icons/sellsticks/"
+final_path = os.path.join(root_path, folders)
+
+stick_img = Image.open("resource/stick.png")
+chars_img = Image.open("resource/chars.png")
+chars_dim = [chars_img.width // 10, chars_img.height]
+chars_arr = [chars_img.crop((chars_dim[0] * i, 0, chars_dim[0] * i + chars_dim[0], chars_dim[1])) for i in range(10)]
+
 
 def main():
-  # read config file
-  config = ConfigParser()
-  config.read("resource/config.cfg")
-  options = config["options"]
-  uses = options.getint("max_uses")
-  pack_format = options.getint("pack_format")
+  uses = args.u
+  pack_format = args.p
   
   # parse if config is valid
   if uses < 0:
     sys.exit("Uses cannot be less than 0.")
-    
-  if not pack_format in formats.keys():
-    sys.exit("Invalid pack format.")
   
   # create folder structure
   os.makedirs(final_path)
