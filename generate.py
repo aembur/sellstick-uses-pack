@@ -7,17 +7,6 @@ import os
 
 version = "1.2"
 
-formats = {1: "1.6.1–1.8.9",
-           2: "1.9-1.10.2",
-           3: "1.11-1.12.2",
-           4: "1.13-1.14.4",
-           5: "1.15-1.16.1",
-           6: "1.16.2-1.16.5",
-           7: "1.17.x",
-           8: "1.18.x",
-           9: "1.19-1.19.2",
-           11: "1.19.3"}
-
 parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
 req_args = parser.add_argument_group("required arguments")
 req_args.add_argument("-p", help="pack format (see https://minecraft.fandom.com/wiki/Pack_format for info)",
@@ -39,15 +28,12 @@ chars_arr = [chars_img.crop((chars_dim[0] * i, 0, chars_dim[0] * i + chars_dim[0
 def main():
   uses = args.u
   pack_format = args.p
-  
-  # parse if config is valid
+
   if uses < 0:
     sys.exit("Uses cannot be less than 0.")
   
-  # create folder structure
-  os.makedirs(final_path)
-  
-  # generate images and files
+  os.makedirs(final_path) # create folder structure
+
   for i in range(1, uses + 1):
     generate(str(i))
     
@@ -55,12 +41,8 @@ def main():
   with open("resource/pack.template", "r") as template, open("temp/pack.mcmeta", "a") as new_file:
     for line in template:
       new_file.write(line.replace("[[FORMAT]]", str(pack_format)))
-      
-  # copy over pack.png
+
   copyfile(root_path + "/resource/pack.png", root_path + "/temp/pack.png")
-  
-  # make zip
-  pack_version = formats[pack_format]
   make_archive(f"SSUP V{version} P{pack_format}", "zip", "temp")
   
   # clean up temp folder
