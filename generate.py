@@ -5,6 +5,8 @@ import argparse
 import sys
 import os
 
+version = "1.2"
+
 formats = {1: "1.6.1–1.8.9",
            2: "1.9-1.10.2",
            3: "1.11-1.12.2",
@@ -59,7 +61,7 @@ def main():
   
   # make zip
   pack_version = formats[pack_format]
-  make_archive(f"SellStick Uses {pack_version}", "zip", "temp")
+  make_archive(f"SSUP V{version} P{pack_format}", "zip", "temp")
   
   # clean up temp folder
   rmtree(root_path + "/temp")
