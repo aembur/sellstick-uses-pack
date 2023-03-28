@@ -10,7 +10,7 @@ version = "1.2"
 parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
 req_args = parser.add_argument_group("required arguments")
 req_args.add_argument("-p", help="pack format (see https://minecraft.fandom.com/wiki/Pack_format for info)",
-                      type=int, choices=formats.keys(), metavar="format", required=True)
+                      type=int, metavar="format", required=True)
 parser.add_argument("-u", type=int, help="specify how many uses to generate (default is 50)",
                     default=50, required=False, metavar="uses")
 args = parser.parse_args()
