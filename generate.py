@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-from PIL import Image, ImageEnhance
+from PIL import Image, ImageDraw, ImageFont
 from shutil import copyfile, make_archive, rmtree
 import argparse
 import sys
 import os
 
-version = "1.2"
+version = "1.3"
 
 parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
 req_args = parser.add_argument_group("required arguments")
@@ -20,9 +20,12 @@ folders = "temp/assets/minecraft/mcpatcher/cit/icons/sellsticks/"
 final_path = os.path.join(root_path, folders)
 
 stick_img = Image.open("resource/stick.png")
-chars_img = Image.open("resource/chars.png")
-chars_dim = [chars_img.width // 10, chars_img.height]
-chars_arr = [chars_img.crop((chars_dim[0] * i, 0, chars_dim[0] * i + chars_dim[0], chars_dim[1])) for i in range(10)]
+# upscale the stick image so fonts actually look good
+stick_img = stick_img.resize((64, 64), Image.Resampling.NEAREST)
+
+font_path = "resource/Retron2000.ttf"
+# for bitmap fonts, font size should match the resolution
+text_font = ImageFont.truetype(font_path, 27)
 
 
 def main():
@@ -52,9 +55,8 @@ def main():
 def generate(uses: str):
   # generate image
   stick = stick_img.copy()
-  for i in range(len(uses)):
-    char = chars_arr[int(uses[i])]
-    stick.paste(char, (i * chars_dim[0] + 1, 1), mask=char)
+  img = ImageDraw.Draw(stick)
+  img.text((0, 0), uses, font=text_font, anchor="lt", fill=(0, 255, 0))
 
   stick.save(f"{final_path}sellstick_{uses}.png")
 
