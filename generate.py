@@ -21,11 +21,11 @@ final_path = os.path.join(root_path, folders)
 
 stick_img = Image.open("resource/stick.png")
 # upscale the stick image so fonts actually look good
-stick_img = stick_img.resize((64, 64), Image.Resampling.NEAREST)
+stick_img = stick_img.resize((32, 32), Image.Resampling.NEAREST)
 
-font_path = "resource/Retron2000.ttf"
+font_path = "resource/mineglyph-faithful.ttf"
 # for bitmap fonts, font size should match the resolution
-text_font = ImageFont.truetype(font_path, 27)
+text_font = ImageFont.truetype(font_path, 16)
 
 
 def main():
