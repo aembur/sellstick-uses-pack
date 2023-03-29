@@ -2,10 +2,10 @@
   <img src="uses.png" alt="SellStick Uses Pack"/>
 </p>
 
-Are you tired of having to mouse over each SellStick just to see how many uses it has? This pack is just for you!
+A resource pack that shows you how many uses your SellStick have without having to hover over them. Uses Custom Items feature from MCPatcher or Optifine. Made for the Cosmic Craft server, but can be adapted to other servers.
 
 # Requirements
-- Optifine or MCPatcher
+- MCPatcher or Optifine
 
 # Installation
 1. Download the pack from the [releases](https://github.com/aembur/sellstick-uses-pack/releases).
@@ -15,5 +15,8 @@ Are you tired of having to mouse over each SellStick just to see how many uses i
 4. Make sure **Custom Items** are turned **ON** in `Options > Video Settings > Quality`.
 
 # Generating your own pack
-If you want to change the stick image or the colours of the numbers, you can do so by changing the textures in the `resource` folder.
-Afterwards, run `generate.py -p [pack format]` to generate a pack.
+If you want to change the stick image, font and font colours, you can do so by changing the `stick.png` texture and adding your own fonts to the `resource` folder, then editing the `generate.py` to use your own fonts.
+Afterwards, run `generate.py -p [pack format] -u [max uses]` to generate a pack.
+
+# Making this work on other servers
+This pack works by trying to match a regex pattern in the item lore. Making this pack work in other servers is as simple as changing the regex pattern in the `properties.template` file found in the `resource` folder.
