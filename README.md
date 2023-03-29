@@ -8,7 +8,7 @@ A resource pack that shows you how many uses your SellStick have without having 
 - MCPatcher or Optifine
 
 # Installation
-1. Download the pack from the [releases](https://github.com/aembur/sellstick-uses-pack/releases).
+1. Download the pack from the [releases](https://github.com/aembur/sellstick-uses-pack/releases). The `P1`, `P3`, and `P6`  at the end of filenames stand for pack formats. See [here](https://minecraft.fandom.com/wiki/Pack_format) for the one you should download for your Minecraft version.
 	- If your version isn't there, download any pack, then edit the `pack.mcmeta` file, and change `pack_format` to one corresponding with your Minecraft version. See [here](https://minecraft.fandom.com/wiki/Pack_format) for the value you should use.
 2. Place the file in your `.minecraft/resourcepacks` folder.
 3. In Minecraft, go to `Options > Resource Packs` and move the `SellStick Uses` pack to the **Selected Resource Packs**.
