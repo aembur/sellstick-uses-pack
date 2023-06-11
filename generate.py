@@ -5,7 +5,7 @@ import argparse
 import sys
 import os
 
-version = "1.3"
+version = "1.3.1"
 
 parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
 req_args = parser.add_argument_group("required arguments")
