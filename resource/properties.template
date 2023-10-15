@@ -3,4 +3,3 @@ items=stick
 texture=sellstick_[[USE]].png
 nbt.display.Name=regex:\\u00A7.SellStick.*
 nbt.display.Lore.*=regex:\\u00A7.[[USE]] \\u00A7.remaining uses
-stackSize=1

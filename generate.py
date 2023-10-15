@@ -50,19 +50,12 @@ def generate(uses: str):
   img.text((0, 0), uses, font=text_font, anchor="lt", fill=(0, 255, 0))
   stick.save(f"{final_path}sellstick_{uses}.png")
 
-  # generate stacked image
-  stick_stacked = stick_img.copy()
-  img = ImageDraw.Draw(stick_stacked)
-  img.text((0, 0), uses, font=text_font, anchor="lt", fill=(255, 85, 85))
-  stick_stacked.save(f"{final_path}sellstick_stacked_{uses}.png")
 
   # generate properties file
   with open("resource/properties.template", "r") as template, open(f"{final_path}sellstick_{uses}.properties", "a") as new_file:
     for line in template:
       new_file.write(line.replace("[[USE]]", uses))
 
-  # generate properties stacked file
-  with open("resource/properties_stacked.template", "r") as template, open(f"{final_path}sellstick_stacked_{uses}.properties", "a") as new_file:
     for line in template:
       new_file.write(line.replace("[[USE]]", uses))
 
