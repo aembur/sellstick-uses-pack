@@ -2,7 +2,7 @@
   <img src="uses.png" alt="SellStick Uses Pack"/>
 </p>
 
-A resource pack that shows you how many uses your SellStick have without having to hover over them. Uses Custom Items feature from MCPatcher or Optifine. Made for the Cosmic Craft server, but can be adapted to other servers. Tested on 1.8.9 and 1.12.2.
+A resource pack that shows you how many uses your SellSticks have without having to hover over them. Uses Custom Items feature from MCPatcher or Optifine. Made for the Cosmic Craft server, but can be adapted to other servers. Tested on 1.8.9 and 1.12.2.
 
 # Requirements
 - MCPatcher or Optifine
