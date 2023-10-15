@@ -9,8 +9,6 @@ version = "1.4"
 
 parser = argparse.ArgumentParser(description="Generates a SellStick uses pack.")
 req_args = parser.add_argument_group("required arguments")
-req_args.add_argument("-p", help="pack format (see https://minecraft.fandom.com/wiki/Pack_format for info)",
-                      type=int, metavar="format", required=True)
 parser.add_argument("-u", type=int, help="specify how many uses to generate (default is 50)",
                     default=50, required=False, metavar="uses")
 args = parser.parse_args()
@@ -30,25 +28,18 @@ text_font = ImageFont.truetype(font_path, 16)
 
 def main():
   uses = args.u
-  pack_format = args.p
 
   if uses < 0:
     sys.exit("Uses cannot be less than 0.")
   
-  os.makedirs(final_path) # create folder structure
 
   for i in range(1, uses + 1):
     generate(str(i))
     
-  # generate pack.mcmeta
-  with open("resource/pack.template", "r") as template, open("temp/pack.mcmeta", "a") as new_file:
-    for line in template:
-      new_file.write(line.replace("[[FORMAT]]", str(pack_format)))
-
+  copyfile(root_path + "/resource/pack.mcmeta", root_path + "/temp/pack.mcmeta")
   copyfile(root_path + "/resource/pack.png", root_path + "/temp/pack.png")
-  make_archive(f"SSUP V{version} P{pack_format}", "zip", "temp")
-  
-  # clean up temp folder
+  make_archive(f"SSUP V{version}", "zip", "temp")
+
   rmtree(root_path + "/temp")
   
 
